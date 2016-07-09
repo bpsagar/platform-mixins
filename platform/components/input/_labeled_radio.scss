@@ -1,0 +1,28 @@
+// Mixin for a label with a custom styled radio button
+
+@import 'radio';
+
+@mixin labeled_radio(
+    $size: $default-size, $thickness: $default-thickness,
+    $color: $default-color, $border-thickness: $default-border-thickness,
+    $type: 'outline') {
+  input[type=radio] {
+    @include radio(
+      $size: $size, $thickness: $thickness, $color: $color,
+      $border-thickness: $border-thickness, $type: $type);
+  }
+
+  &:hover {
+    cursor: pointer;
+    input[type=radio] + * {
+      @include radio_hover(
+        $size: $size, $thickness: $thickness, $color: $color,
+        $border-thickness: $border-thickness, $type: $type);
+    }
+    input[type=radio]:checked {
+      @include radio(
+        $size: $size, $thickness: $thickness, $color: $color,
+        $border-thickness: $border-thickness, $type: $type);
+    }
+  }
+}
