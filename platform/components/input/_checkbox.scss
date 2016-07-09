@@ -1,0 +1,109 @@
+// Mixin for a custom style-able checkbox
+
+// It requires the checkbox to be inside a label tag and have an empty sibling
+// Example <label><input type="checkbox" /><span></span></label>
+
+// Two types of checkboxes:
+// 1. Outline - Color of the border and the tick is changed on select
+// 2. Fill    - Background color of the checkbox is changed, tick is white in color
+
+@import '../../base/normalize';
+
+
+// Default variables
+$default-size: 14px;
+$default-thickness: 1px;
+$default-color: #666;
+$default-border-thickness: 1px;
+$default-type: 'outline';
+$lighten-percentage: 5%;
+$desaturate-percentage: 80%;
+$border-radius: 15%;
+$on-hover-opacity: 0.2;
+$transition-duration: 0.2s;
+
+
+@mixin checkbox_hover(
+    $size: $default-size, $thickness: $default-thickness,
+    $color: $default-color, $border-thickness: $default-border-thickness,
+    $type: 'outline') {
+  cursor: pointer;
+  border: $border-thickness solid lighten($color, $lighten-percentage);
+
+  @if $type == 'outline' {
+    &:after {
+      opacity: $on-hover-opacity;
+    }
+  }
+
+  @if $type == 'fill' {
+    background-color: transparentize($color, (1-$on-hover-opacity));
+  }
+}
+
+@mixin checkbox(
+    $size: $default-size, $thickness: $default-thickness,
+    $color: $default-color, $border-thickness: $default-border-thickness,
+    $type: 'outline') {
+  // Hide the actual checkbox
+  display: none;
+  
+  & + * {
+    // Styling adjacent container as checkbox
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: $size;
+    height: $size;
+    border: $border-thickness solid desaturate(lighten($color, $lighten-percentage), $desaturate-percentage);
+    @include border-radius($border-radius);
+    @include transition(all $transition-duration);
+    
+    &:hover {
+      // Hover styles
+      @include checkbox_hover($size: $size, $thickness: $thickness, $color: $color, $border-thickness: $border-thickness, $type: $type);
+    }
+
+    &:after {
+      // This contains the tick mark. Its a rotated rectangle with border
+      // on two adjacent sides
+      position: absolute;
+      box-sizing: border-box;
+      width: $size / 1.5;
+      height: $size / 2.5;
+      margin: auto;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      content: '';
+      opacity: 0;
+      border-left: $thickness solid $color;
+      border-bottom: $thickness solid $color;
+      @include transform(rotate(-45deg) translateX(15%) translateY(-15%));
+      @include transition(all $transition-duration);
+    }
+  }
+
+  &:checked + * {
+    // Styling adjacent container when it is checked
+    @if $type == 'outline' {
+      // Checkbox of type outline
+      border: $border-thickness solid lighten($color, $lighten-percentage);
+    }
+
+    @if $type == 'fill' {
+      // Checkbox of type filled
+      border: $border-thickness solid $color;
+      background-color: $color;
+      &:after {
+        border-color: #FFF;
+      }
+    }
+
+    &:after {
+      // Displaying the checkmark
+      opacity: 1;
+    }
+  }
+}
