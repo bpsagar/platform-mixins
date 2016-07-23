@@ -59,7 +59,7 @@ $transition-duration: 0.2s;
     box-sizing: border-box;
     @include border-radius($border-radius);
     @include transition(all $transition-duration);
-    
+
     &:hover {
       // Hover styles
       @include checkbox_hover($size: $size, $thickness: $thickness, $color: $color, $border-thickness: $border-thickness, $type: $type);
