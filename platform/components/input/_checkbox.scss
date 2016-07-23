@@ -56,6 +56,7 @@ $transition-duration: 0.2s;
     width: $size;
     height: $size;
     border: $border-thickness solid desaturate(lighten($color, $lighten-percentage), $desaturate-percentage);
+    box-sizing: border-box;
     @include border-radius($border-radius);
     @include transition(all $transition-duration);
     
@@ -70,7 +71,7 @@ $transition-duration: 0.2s;
       position: absolute;
       box-sizing: border-box;
       width: $size / 1.5;
-      height: $size / 2.5;
+      height: $size / 3;
       margin: auto;
       top: 0;
       bottom: 0;
@@ -80,7 +81,7 @@ $transition-duration: 0.2s;
       opacity: 0;
       border-left: $thickness solid $color;
       border-bottom: $thickness solid $color;
-      @include transform(rotate(-45deg) translateX(15%) translateY(-15%));
+      @include transform(translateY(-30%) rotate(-45deg));
       @include transition(all $transition-duration);
     }
   }
