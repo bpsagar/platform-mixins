@@ -7,12 +7,13 @@
     $color: $default-checkbox-color,
     $border-thickness: $default-checkbox-border-thickness,
     $border-radius: $default-checkbox-border-radius,
+    $desaturate-percentage: $default-checkbox-desaturate-percentage,
     $type: $default-checkbox-type) {
   input[type=checkbox] {
     @include Checkbox(
       $size: $size, $thickness: $thickness, $color: $color,
       $border-thickness: $border-thickness, $border-radius: $border-radius,
-      $type: $type);
+      $desaturate-percentage: $desaturate-percentage, $type: $type);
   }
 
   &:hover {
@@ -21,13 +22,13 @@
       @include CheckboxHover(
         $size: $size, $thickness: $thickness, $color: $color,
         $border-thickness: $border-thickness, $border-radius: $border-radius,
-        $type: $type);
+        $desaturate-percentage: $desaturate-percentage, $type: $type);
     }
     input[type=checkbox]:checked {
       @include Checkbox(
         $size: $size, $thickness: $thickness, $color: $color,
         $border-thickness: $border-thickness, $border-radius: $border-radius,
-        $type: $type);
+        $desaturate-percentage: $desaturate-percentage, $type: $type);
     }
   }
 }
