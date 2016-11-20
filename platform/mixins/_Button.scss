@@ -1,0 +1,43 @@
+@import 'normalize';
+
+
+$default-button-color: #999;
+$default-button-hover-color: #888;
+$default-button-border-radius: 4px;
+$default-button-type: 'outline';
+$button-padding: 10px 15px;
+$button-transition-duration: 0.2s;
+
+
+@mixin Button(
+    $color: $default-button-color,
+    $hover-color: $default-button-hover-color,
+    $border-radius: $default-button-border-radius,
+    $type: $default-button-type) {
+  display: inline-block;
+  padding: $button-padding;
+  cursor: pointer;
+  @include border-radius($border-radius);
+  @include transition(all $button-transition-duration);
+
+  @if $type == 'fill' {
+    background-color: $color;
+    color: #FFF;
+    border: none;
+
+    &:hover {
+      background-color: $hover-color;
+    }
+  }
+
+  @if $type == 'outline' {
+    border: 1px solid $color;
+    background-color: transparent;
+    color: $color;
+
+    &:hover {
+      color: $hover-color;
+      border-color: $hover-color;
+    }
+  }
+}
