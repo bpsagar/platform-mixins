@@ -63,7 +63,8 @@ $checkbox-transition-duration: 0.2s;
       // Hover styles
       @include CheckboxHover(
         $size: $size, $thickness: $thickness, $color: $color,
-        $border-thickness: $border-thickness, $type: $type);
+        $border-thickness: $border-thickness, $border-radius: $border-radius,
+        $desaturate-percentage: $desaturate-percentage, $type: $type);
     }
 
     &:after {

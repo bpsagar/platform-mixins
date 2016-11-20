@@ -6,9 +6,9 @@ $default-radio-size: 18px;
 $default-radio-thickness: 8px;
 $default-radio-color: #666;
 $default-radio-border-thickness: 1px;
+$default-radio-desaturate-percentage: 50%;
 $default-radio-type: 'outline';
 $radio-lighten-percentage: 5%;
-$radio-desaturate-percentage: 80%;
 $radio-on-hover-opacity: 0.2;
 $radio-transition-duration: 0.2s;
 
@@ -17,6 +17,7 @@ $radio-transition-duration: 0.2s;
     $thickness: $default-radio-thickness,
     $color: $default-radio-color,
     $border-thickness: $default-radio-border-thickness,
+    $desaturate-percentage: $default-radio-desaturate-percentage,
     $type: $default-radio-type) {
   cursor: pointer;
   border: $border-thickness solid lighten($color, $radio-lighten-percentage);
@@ -37,6 +38,7 @@ $radio-transition-duration: 0.2s;
     $thickness: $default-radio-thickness,
     $color: $default-radio-color,
     $border-thickness: $default-radio-border-thickness,
+    $desaturate-percentage: $default-radio-desaturate-percentage,
     $type: $default-radio-type) {
   // Hide the actual checkbox
   display: none;
@@ -48,7 +50,7 @@ $radio-transition-duration: 0.2s;
     vertical-align: middle;
     width: $size;
     height: $size;
-    border: $border-thickness solid desaturate(lighten($color, $radio-lighten-percentage), $radio-desaturate-percentage);
+    border: $border-thickness solid desaturate(lighten($color, $radio-lighten-percentage), $desaturate-percentage);
     @include border-radius(50%);
     @include transition(all $radio-transition-duration);
 
@@ -56,7 +58,8 @@ $radio-transition-duration: 0.2s;
       // Hover styles
       @include RadioHover(
         $size: $size, $thickness: $thickness, $color: $color,
-        $border-thickness: $border-thickness, $type: $type);
+        $border-thickness: $border-thickness,
+        $desaturate-percentage: $desaturate-percentage, $type: $type);
     }
 
     &:after {
