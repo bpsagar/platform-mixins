@@ -6,10 +6,10 @@ $default-checkbox-size: 18px;
 $default-checkbox-thickness: 1px;
 $default-checkbox-color: #666;
 $default-checkbox-border-thickness: 1px;
+$default-checkbox-border-radius: 15%;
 $default-checkbox-type: 'outline';
 $checkbox-lighten-percentage: 5%;
 $checkbox-desaturate-percentage: 80%;
-$checkbox-border-radius: 15%;
 $checkbox-on-hover-opacity: 0.2;
 $checkbox-transition-duration: 0.2s;
 
@@ -19,6 +19,7 @@ $checkbox-transition-duration: 0.2s;
     $thickness: $default-checkbox-thickness,
     $color: $default-checkbox-color,
     $border-thickness: $default-checkbox-border-thickness,
+    $border-radius: $default-checkbox-border-radius,
     $type: $default-checkbox-type) {
   cursor: pointer;
   border: $border-thickness solid lighten($color, $checkbox-lighten-percentage);
@@ -39,6 +40,7 @@ $checkbox-transition-duration: 0.2s;
     $thickness: $default-checkbox-thickness,
     $color: $default-checkbox-color,
     $border-thickness: $default-checkbox-border-thickness,
+    $border-radius: $default-checkbox-border-radius,
     $type: $default-checkbox-type) {
   // Hide the actual checkbox
   display: none;
@@ -52,7 +54,7 @@ $checkbox-transition-duration: 0.2s;
     height: $size;
     border: $border-thickness solid desaturate(lighten($color, $checkbox-lighten-percentage), $checkbox-desaturate-percentage);
     box-sizing: border-box;
-    @include border-radius($checkbox-border-radius);
+    @include border-radius($border-radius);
     @include transition(all $checkbox-transition-duration);
 
     &:hover {
