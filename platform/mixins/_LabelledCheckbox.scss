@@ -1,13 +1,14 @@
-// Mixin for a label with a custom styled checkbox
+@import 'Checkbox';
 
-@import 'checkbox';
 
-@mixin labeled_checkbox(
-    $size: $default-size, $thickness: $default-thickness,
-    $color: $default-color, $border-thickness: $default-border-thickness,
-    $type: 'outline') {
+@mixin LabelledCheckbox(
+    $size: $default-checkbox-size,
+    $thickness: $default-checkbox-thickness,
+    $color: $default-checkbox-color,
+    $border-thickness: $default-checkbox-border-thickness,
+    $type: $default-checkbox-type) {
   input[type=checkbox] {
-    @include checkbox(
+    @include Checkbox(
       $size: $size, $thickness: $thickness, $color: $color,
       $border-thickness: $border-thickness, $type: $type);
   }
@@ -15,12 +16,12 @@
   &:hover {
     cursor: pointer;
     input[type=checkbox] + * {
-      @include checkbox_hover(
+      @include CheckboxHover(
         $size: $size, $thickness: $thickness, $color: $color,
         $border-thickness: $border-thickness, $type: $type);
     }
     input[type=checkbox]:checked {
-      @include checkbox(
+      @include Checkbox(
         $size: $size, $thickness: $thickness, $color: $color,
         $border-thickness: $border-thickness, $type: $type);
     }
