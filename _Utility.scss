@@ -2,7 +2,7 @@
 @mixin modifier($name) {
   // Mixin to add a modifier to a style
   // $name: name of the modifier
-  &--#{$name} {
+  &-#{$name} {
     @content
   }
 }
